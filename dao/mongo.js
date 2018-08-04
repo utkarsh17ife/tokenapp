@@ -6,7 +6,7 @@ var db;
 
 let connect = () => {
     return new Promise((resolve, reject) => {
-        MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function (err, dbInstance) {
+        MongoClient.connect(mongoUrl, function (err, dbInstance) {
             if (err) return reject(err);
             db = dbInstance;
             return resolve();

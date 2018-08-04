@@ -1,7 +1,7 @@
 const { Response, User } = require('../model');
 const { mongo } = require('../dao');
 const { collections, userTypes } = require('../const');
-
+const jwt = require('../utils/jwt');
 
 
 async function createAdmin(adminData) {
@@ -29,6 +29,16 @@ async function signup(signupData) {
     try {
 
         let user = new User(signupData);
+        let available = await user.userNameAvailability();
+        if (!available) {
+            return new Response({
+                code: 200,
+                message: "UserName taken",
+                data: {},
+                err: null
+            })
+        }
+
         user.encryptPassword()
         user.makeRegular()
         user.save()
@@ -40,10 +50,7 @@ async function signup(signupData) {
             err: null
         })
 
-
-
     } catch (err) {
-        console.log(err);
 
         return new Response({
             code: 500,
@@ -59,9 +66,45 @@ async function signup(signupData) {
 
 
 
-async function login() {
+async function login(loginData) {
 
     try {
+
+        let user = new User({});
+        let userFromDb = await user.getByUserName(loginData.userName);
+        if (!userFromDb) {
+            return new Response({
+                code: 200,
+                message: "No such user in the system",
+                data: null,
+                err: null
+            })
+        }
+
+        //check for creds
+        if (!jwt.comparePassword(loginData.password, userFromDb.password)) {
+            return new Response({
+                code: 200,
+                message: "Wrong userName/password",
+                data: null,
+                err: null
+            })
+        };
+
+        //create JWT token
+        delete userFromDb.password;
+        let jwtToken = jwt.createToken(userFromDb);
+        return new Response({
+            code: 200,
+            message: "success full login",
+            data: {
+                userDetails: userFromDb,
+                jwtToken
+            },
+            err: null
+        })
+
+
 
         return new Response({
             code: 200,
@@ -72,7 +115,7 @@ async function login() {
 
 
     } catch (err) {
-
+        console.log(err)
         return new Response({
             code: 500,
             message: "Something went wrong",

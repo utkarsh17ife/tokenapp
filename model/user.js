@@ -6,10 +6,11 @@ const { collections, userTypes } = require('../const');
 class User {
 
     constructor(resData) {
-        this.userName = resData.userName;
-        this.password = resData.password;
-        this.type = resData.password;
+        this.userName = resData.userName || "";
+        this.password = resData.password || "";
+        this.type = resData.password || "";
     }
+
 
     makeAdmin() {
         this.type = userTypes.ADMIN;
@@ -26,9 +27,29 @@ class User {
     serialize() {
         return {
             "userName": this.userName,
-            "password": this.type
+            "type": this.type
         }
 
+    }
+
+    async getByUserName(userName) {
+
+        let user = await mongo.query(collections.users, { "userName": this.userName || userName });
+        if (user && user.length > 0) {
+            return user[0];
+        } else {
+            return null;
+        }
+
+    }
+
+    async userNameAvailability() {
+
+        if (await this.getByUserName()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     async save() {
