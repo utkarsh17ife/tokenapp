@@ -5,7 +5,7 @@ const { auth } = require('../controller');
 
 router.post('/signup', async (req, res) => {
 
-    let response = auth.signup(req.body);
+    let response = await auth.signup(req.body);
 
     res.status(response.code).send(response);
 
@@ -14,7 +14,7 @@ router.post('/signup', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 
-    let response = auth.login(req.body);
+    let response = await auth.login(req.body);
 
     res.status(response.code).send(response);
 

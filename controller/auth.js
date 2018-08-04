@@ -5,7 +5,7 @@ async function signup() {
 
     try {
 
-        let res = new Response({
+        return new Response({
             code: 200,
             message: "success full sinup",
             data: null,
@@ -13,9 +13,10 @@ async function signup() {
         })
 
 
+
     } catch (err) {
 
-        let res = new Response({
+        return new Response({
             code: 500,
             message: "Something went wrong",
             data: null,
@@ -35,7 +36,7 @@ async function login() {
 
     try {
 
-        let res = new Response({
+        return new Response({
             code: 200,
             message: "success full login",
             data: null,
@@ -45,7 +46,7 @@ async function login() {
 
     } catch (err) {
 
-        let res = new Response({
+        return new Response({
             code: 500,
             message: "Something went wrong",
             data: null,
