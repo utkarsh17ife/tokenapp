@@ -32,7 +32,6 @@ function verifyJWT(req, res, next) {
 }
 
 let encryptPassword = function (password) {
-
     let salt = bcrypt.genSaltSync(saltRounds);
     return bcrypt.hashSync(password, salt);
 };
@@ -42,3 +41,9 @@ let comparePassword = function (password, userPassword) {
     return bcrypt.compareSync(password, userPassword);
 };
 
+module.exports = {
+    createToken,
+    verifyJWT,
+    encryptPassword,
+    comparePassword
+}
