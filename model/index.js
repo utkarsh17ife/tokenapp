@@ -1,4 +1,4 @@
 module.exports = {
-    User = require('./user'),
-    Response = require('./response')
+    User: require('./user'),
+    Response: require('./response')
 }

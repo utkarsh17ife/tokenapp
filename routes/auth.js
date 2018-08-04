@@ -5,18 +5,18 @@ const { auth } = require('../controller');
 
 router.post('/signup', async (req, res) => {
 
-    let res = auth.signup(req.body);
+    let response = auth.signup(req.body);
 
-    res.status(res.code).send(res);
+    res.status(response.code).send(response);
 
 })
 
 
 router.post('/login', async (req, res) => {
 
-    let res = auth.login(req.body);
+    let response = auth.login(req.body);
 
-    res.status(res.code).send(res);
+    res.status(response.code).send(response);
 
 })
 

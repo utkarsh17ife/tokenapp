@@ -9,7 +9,7 @@ app.use('/api/token', require('./routes').token);
 
 
 
-app.listen(port, () => {
-    console.log(`App is running on port: ${port}`);
+app.listen(config.port, () => {
+    console.log(`App is running on port: ${config.port}`);
 
 })

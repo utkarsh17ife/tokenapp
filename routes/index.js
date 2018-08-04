@@ -1,4 +1,4 @@
 module.exports = {
-    auth = require('./auth'),
-    token = require('./token')
+    auth: require('./auth'),
+    token: require('./token')
 }
