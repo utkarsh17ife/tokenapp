@@ -47,10 +47,32 @@ let update = (collectionName, query, udpateData) => {
     })
 };
 
+let count = (collectionName,query)=>{
+    return new Promise((resolve, reject) => {
+        let collection = db.collection(collectionName);
+        collection.find(query).count((err, result) => {
+            if (err) return reject(err);
+            return resolve(result);
+        })
+    })
+}
+
+let deleteItem = (collectionName,query)=>{
+    return new Promise((resolve, reject) => {
+        let collection = db.collection(collectionName);
+        collection.remove(query , (err, result) => {
+            if (err) return reject(err);
+            return resolve(result);
+        })
+    })
+}
+
 
 module.exports = {
     connect,
     query,
     insert,
-    update
+    update,
+    count,
+    deleteItem
 }

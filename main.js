@@ -5,10 +5,20 @@ const bodyParser = require('body-parser');
 const { mongo } = require('./dao');
 const { auth } = require('./controller');
 const { userTypes } = require('./const');
-
+const path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, 'public/dist/tokenApp')))
+
+app.use((req, res, next)=>{
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', '*')
+    next()
+})
+
+
 
 
 

@@ -1,0 +1,11 @@
+<div class="col-md-12 sharetext">SHARE APP<span style="float:right;cursor:pointer" (click)="logout()">Log Out</span></div>
+<div class="container">
+    <div class="col-md-12 title" style="font-weight:700">YOUR APP SHARING TOKEN</div>
+    <div class="col-md-12 copytext">Copy and paste the token below into emails and app.</div>
+    <div class="col-md-offset-5" style="float:left;width:80%" [hidden]="!gen">
+        <input type="text" readonly="readonly" class="form-control" #copyfield [(ngModel)]="token">
+    </div>
+    <button type="button" class="btn btn-warning" (click)="copy(copyfield)" [hidden]="!gen">COPY</button>
+    <button type="button" class="btn btn-success" (click)="generateinvite()" [hidden]="gen">GENERATE TOKEN</button>
+    <button type="button" class="btn btn-success" style="margin-left:1%" [routerLink]='["/tokengen",userid]'>VIEW TOKENS</button>
+</div>

@@ -7,11 +7,13 @@ const { JWTsecret } = require('../config')
  * expiresIn: 100000 sec is equal to 27.7 hrs
  */
 function createToken(details) {
-    return jwt.sign(details, JWTsecret, { expiresIn: 100000 });
+    let token =  jwt.sign(details, JWTsecret, { expiresIn: 100000 });
+    console.log(token)
+    return token
 }
 
 function verifyJWT(req, res, next) {
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    var token = req.body.token || req.query.token || req.headers['authorization'];
     if (token) {
         jwt.verify(token, JWTsecret, function (err, decoded) {
             if (err) {

@@ -1,0 +1,23 @@
+<div class="container">
+  <div style="text-align:center;padding-top:2%;">
+    <img style="width:25%" src="../../assets/images/catalyst.png" />
+  </div>
+
+  <form action="/action_page.php">
+
+    <div class="container1">
+      <label for="uname" class="col-md-12" style="text-align: center;padding-top:15%">
+        <b style="color:white">Invitation Token</b>
+      </label>
+      <div class="col-md-offset-5" style="float:left;width:85%">
+        <input type="text" class="form-control" id="tokendiv" [(ngModel)]="tokenval.token" name="tokenval">
+      </div>
+      <button type="button" class="btn btn-warning" (click)="checkToken(tokenval)" style="margin-left:1%;margin-right:1%">LOGIN</button>
+      <button type="button" class="btn btn-warning cancelbtn" (click)="goBack()">Back</button>
+    </div>
+
+      
+
+
+  </form>
+</div>

@@ -34,7 +34,7 @@ async function signup(signupData) {
             return new Response({
                 code: 200,
                 message: "UserName taken",
-                data: {},
+                data: null,
                 err: null
             })
         }
@@ -45,8 +45,8 @@ async function signup(signupData) {
 
         return new Response({
             code: 200,
-            message: "success full sinup",
-            data: {},
+            message: "Registered Successfully",
+            data: {body:'Done'},
             err: null
         })
 

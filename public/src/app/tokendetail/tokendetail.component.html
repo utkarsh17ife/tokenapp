@@ -1,0 +1,24 @@
+<div class="container">
+  <button class="btn btn-lg btn-outline-primary" routerLink="/tokengen" id="newbutton">Back</button>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <th>Invitation Token</th>
+      <th>Expiry Date</th>
+      <th>Disable</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tab of data">
+        <td>{{tab.inviteid}}</td>
+        <td>{{tab.expirydate|date:'medium'}}</td>
+        <td><button type="button btn btn-warning" (click)="deleteItem(tab)">Disable</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  
+  
+  
+  
+  
+  
+  

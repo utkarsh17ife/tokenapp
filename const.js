@@ -1,5 +1,6 @@
 module.exports.collections = {
-    users: 'users'
+    users: 'users',
+    tokens:'tokens',
 }
 
 module.exports.userTypes = {
