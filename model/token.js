@@ -1,6 +1,7 @@
 const jwt = require('../utils/jwt');
 const { mongo } = require('../dao');
 const { collections, userTypes } = require('../const');
+const ObjectId = require('mongodb').ObjectID;
 
 
 class Token {
@@ -20,7 +21,8 @@ class Token {
     // }
 
     async deleteItem(id) {
-        await mongo.deleteItem(collections.tokens, { "_id": this.id || id })
+        let idstr = String(id)
+        await mongo.deleteItem(collections.tokens, { "_id": ObjectId(idstr) })
         //return token
     }
 

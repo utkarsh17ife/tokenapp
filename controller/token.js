@@ -12,7 +12,7 @@ async function deleteToken(id){
         return new Response({
             code: 200,
             message: "Deleted Successfully",
-            data: null,
+            data: {body:"Delete"},
             err: null
         })
     }

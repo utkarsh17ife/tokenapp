@@ -35,11 +35,11 @@ mongo.connect()
             console.log("")
             await auth.createAdmin({
                 userName: "admin1",
-                password: "123123"
+                password: "Password1"
             })
             await auth.createAdmin({
                 userName: "admin2",
-                password: "123123"
+                password: "Password2"
             })
         }
 

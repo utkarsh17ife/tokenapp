@@ -24,7 +24,13 @@ export class TokendetailComponent implements OnInit {
 
   deleteItem(data){
     this._user.deleteItem(data).subscribe(tokens => {
-      alert("Disabled");
+      console.log(tokens)
+      alert("Disabled")
+      this._user.getTokensofUser(this.id).subscribe(tokens => {
+        this.data = tokens.data.tokens
+        console.log(this.data);
+      },
+      error => this.errorMessage = < any > error);
     },
     error => this.errorMessage = < any > error);
   }

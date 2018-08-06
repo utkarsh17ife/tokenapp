@@ -48,6 +48,7 @@ router.post('/check', async (req, res) => {
 
 router.post('/delete', async (req, res) => {
     let userFromJWT = req.decoded;
+    console.log(req.body._id)
     let response = await token.deleteToken(req.body._id);
     console.log(response)
     res.status(response.code).send(response);
